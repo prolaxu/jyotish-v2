@@ -1,5 +1,5 @@
 {
-    "name": "kunjara/jyotish",
+    "name": "prolaxu/jyotish",
     "description": "PHP library for calculations in Vedic astrology",
     "keywords": [
         "jyotish", "vedic astrology", "ganita", "jataka", "muhurta", "panchanga"
@@ -12,6 +12,11 @@
             "name": "Kunjara Lila das",
             "email": "vladya108@gmail.com",
             "homepage": "http://web-art.su"
+        },
+        {
+            "name": "Laxman Adhikari",
+            "email": "adhikarilaxu0001@gmail.com",
+            "homepage": "https://laxman-adhikari.com.np"
         }
     ],
     "require": {
