@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0|>=8.0",
+        "php": "^7.0|^8.0",
         "kunjara/swetest": "1.0"
     },
     "require-dev": {
@@ -29,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Jyotish\\": "src"
+            "Jyotish\\": "src/"
         }
     },
     "extra": {
