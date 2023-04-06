@@ -32,8 +32,8 @@ class Varga
 
     /**
      * Vargas names.
-     * 
-     * @var array 
+     *
+     * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 2-4.
      */
     public static $varga = [
@@ -57,7 +57,7 @@ class Varga
 
     /**
      * The full Bal for each of the divisions consisting Shad Varga.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 17-19.
      */
@@ -72,7 +72,7 @@ class Varga
 
     /**
      * The full Bal for each of the divisions consisting Sapta Varga.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 17-19.
      */
@@ -88,7 +88,7 @@ class Varga
 
     /**
      * The full Bal for each of the divisions consisting Dasha Varga.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 20.
      */
@@ -107,7 +107,7 @@ class Varga
 
     /**
      * The full Bal for each of the divisions consisting Shodasha Varga.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 21-25.
      */
@@ -132,7 +132,7 @@ class Varga
 
     /**
      * Returns the requested instance of varga class.
-     * 
+     *
      * @param string $key The key of varga
      * @param null|array $options Options to set (optional)
      * @return the requested instance of varga class
@@ -140,12 +140,12 @@ class Varga
      */
     public static function getInstance($key, $options = null) {
         $keyUcfirst = ucfirst($key);
-        
+
         if (!array_key_exists($keyUcfirst, self::$varga)) {
             throw new Exception\InvalidArgumentException("Varga '$key' is not defined.");
         }
-        
-        $vargaClass = 'Jyotish\\Varga\\Object\\' . ucfirst($keyUcfirst);
+
+        $vargaClass = 'Jyotish\\Varga\\BaseObject\\' . ucfirst($keyUcfirst);
         $vargaObject = new $vargaClass($options);
 
         return $vargaObject;

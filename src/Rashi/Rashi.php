@@ -34,7 +34,7 @@ class Rashi
     const DAYA_SIRSHA   = 'sirsha';
     const DAYA_PRUSHTA  = 'prushta';
     const DAYA_UBHAYA   = 'ubhaya';
-    
+
     /**
      * Ucha (exaltation)
      */
@@ -63,7 +63,7 @@ class Rashi
      * Neecha (debilitation)
      */
     const GRAHA_NEECHA = 'neecha';
-    
+
     const NAME_1 = 'Mesha';
     const NAME_2 = 'Vrishabha';
     const NAME_3 = 'Mithuna';
@@ -79,8 +79,8 @@ class Rashi
 
     /**
      * List of rashis.
-     * 
-     * @var array 
+     *
+     * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
      */
     public static $rashi = [
@@ -97,10 +97,10 @@ class Rashi
         11 => self::NAME_11,
         12 => self::NAME_12,
     ];
-    
+
     /**
      * States of the planet, depending on location in the rashis.
-     * 
+     *
      * @var array
      */
     public static $grahaAvastha = [
@@ -112,10 +112,10 @@ class Rashi
         self::GRAHA_ENEMY,
         self::GRAHA_NEECHA,
     ];
-    
+
     /**
      * Pushkara bhaga.
-     * 
+     *
      * @var array
      * @see Vaidyanatha Dikshita. Jataka Parijata. Chapter 1, Verse 58.
      */
@@ -133,10 +133,10 @@ class Rashi
         11 => 19,
         12 => 9,
     ];
-    
+
     /**
      * Pushkara navamsha.
-     * 
+     *
      * @var array
      */
     public static $pushkaraNavamsha = [
@@ -155,9 +155,9 @@ class Rashi
     ];
 
     /**
-     * Trimsamsa is division of each sign into thirty equal parts, each part 
+     * Trimsamsa is division of each sign into thirty equal parts, each part
      * being a degree.
-     * 
+     *
      * @var array
      */
     private static $trimshamshaRuler = [
@@ -170,7 +170,7 @@ class Rashi
 
     /**
      * Devanagari 'rashi' in transliteration.
-     * 
+     *
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
@@ -178,7 +178,7 @@ class Rashi
 
     /**
      * Returns the requested instance of rashi class.
-     * 
+     *
      * @param int $key The number of rashi
      * @param null|array $options Options to set (optional)
      * - `rashi5IsVana`: set type of jiva for 5th rashi as vana (wild)
@@ -190,16 +190,16 @@ class Rashi
         if (!array_key_exists($key, self::$rashi)) {
             throw new Exception\InvalidArgumentException("Rashi with the key '$key' does not exist.");
         }
-        
-        $rashiClass = 'Jyotish\\Rashi\\Object\\R' . $key;
+
+        $rashiClass = 'Jyotish\\Rashi\\BaseObject\\R' . $key;
         $rashiObject = new $rashiClass($options);
 
         return $rashiObject;
     }
-    
+
     /**
      * Get list of rashis by feature.
-     * 
+     *
      * @param string $feature Feature of rashi
      * @param string $value Value of feature
      * @return array
@@ -210,21 +210,21 @@ class Rashi
 
         foreach (self::$rashi as $key => $name) {
             $Rashi = self::getInstance($key);
-            
+
             $rashiFeature = 'rashi' . ucfirst(strtolower($feature));
-            
+
             if (!property_exists($Rashi, $rashiFeature)) {
                 throw new Exception\UnexpectedValueException("Rashi feature '$rashiFeature' does not exist.");
             }
-            
+
             $Rashi->$rashiFeature == $value ? $result[$key] = $name : null;
         }
         return $result;
     }
-    
+
     /**
      * Get trimshamsha rulers.
-     * 
+     *
      * @param int $key Rashi key
      * @return array Trimshamsha rulers
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 27-28.
@@ -233,7 +233,7 @@ class Rashi
     public static function listTrimshamshaRuler($key)
     {
         $rulers = $key % 2 ? self::$trimshamshaRuler : array_reverse(self::$trimshamshaRuler);
-        
+
         return $rulers;
     }
 }

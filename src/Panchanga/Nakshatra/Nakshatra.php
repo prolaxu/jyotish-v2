@@ -59,8 +59,8 @@ class Nakshatra
 
     /**
      * Array of all nakshatras.
-     * 
-     * @var array 
+     *
+     * @var array
      */
     public static $nakshatra = [
         1 => 'Ashwini',
@@ -95,8 +95,8 @@ class Nakshatra
 
     /**
      * Array of navatara (nine stars).
-     * 
-     * @var array 
+     *
+     * @var array
      */
     public static $navatara = [
         1 => 'Janma',
@@ -109,10 +109,10 @@ class Nakshatra
         8 => 'Mitra',
         9 => 'Atimitra'
     ];
-    
+
     /**
      * List of nakshatra types.
-     * 
+     *
      * @var array
      */
     public static $type = [
@@ -127,22 +127,22 @@ class Nakshatra
 
     /**
      * Devanagari title 'nakshatra' in transliteration.
-     * 
+     *
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
     public static $translit = ['na','ka','virama','ssa','ta','virama','ra'];
-    
+
     /**
      * Arc value of nakshatra.
-     * 
-     * @var array 
+     *
+     * @var array
      */
     public static $arc = ['d' => 13, 'm' => 20, 's' => 0];
-    
+
     /**
      * Returns the requested instance of nakshatra class.
-     * 
+     *
      * @param int $key The key of nakshatra
      * @param null|array $options Options to set (optional)
      * - `withAbhijit`: with Abhijit
@@ -155,7 +155,7 @@ class Nakshatra
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the key '$key' does not exist.");
         }
 
-        $nakshatraClass = 'Jyotish\\Panchanga\\Nakshatra\\Object\\N' . $key;
+        $nakshatraClass = 'Jyotish\\Panchanga\\Nakshatra\\BaseObject\\N' . $key;
         $nakshatraObject = new $nakshatraClass($options);
 
         return $nakshatraObject;
@@ -163,7 +163,7 @@ class Nakshatra
 
     /**
      * Returns the list of nakshatras.
-     * 
+     *
      * @param bool $withAbhijit
      * @return array
      */
@@ -172,21 +172,21 @@ class Nakshatra
         $nakshatras = self::$nakshatra;
 
         if ($withAbhijit) {
-            $result = 
+            $result =
                 array_slice($nakshatras, 0, 21, true) +
-                array_slice($nakshatras, -1, 1, true) + 
-                array_slice($nakshatras, 21, 6, true); 
+                array_slice($nakshatras, -1, 1, true) +
+                array_slice($nakshatras, 21, 6, true);
         } else {
             unset($nakshatras[28]);
             $result = $nakshatras;
         }
         return $result;
     }
-    
+
     /**
-     * Returns the list of navataras for nakshatra. Will be very useful when 
+     * Returns the list of navataras for nakshatra. Will be very useful when
      * choosing Muhurta.
-     * 
+     *
      * @param string $nakshatraKey Nakshatra key
      * @return array
      */
@@ -195,12 +195,12 @@ class Nakshatra
         if (!array_key_exists($nakshatraKey, self::listNakshatra())) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the key '$nakshatraKey' does not exist.");
         }
-        
+
         $nakshatas = Math::shiftArray(self::listNakshatra(), $nakshatraKey);
 
         $number = 1;
         $block = 1;
-        
+
         $navataras = [];
         foreach ($nakshatas as $key => $name) {
             $navataras[$key] = [
@@ -208,14 +208,14 @@ class Nakshatra
                 'number' => $number,
                 'name' => self::$navatara[$number]
             ];
-            
+
             $number++;
             if ($number > 9) {
                 $block += 1;
                 $number = 1;
             }
         }
-        
+
         return $navataras;
     }
 }

@@ -44,11 +44,11 @@ class Vara
      * Saturday
      */
     const NAME_SA = 'Shanivar';
-    
+
     /**
      * Array of all varas.
-     * 
-     * @var array 
+     *
+     * @var array
      */
     public static $vara = [
         Graha::KEY_SY => self::NAME_SY,
@@ -59,10 +59,10 @@ class Vara
         Graha::KEY_SK => self::NAME_SK,
         Graha::KEY_SA => self::NAME_SA,
     ];
-    
+
     /**
      * Returns the requested instance of vara class.
-     * 
+     *
      * @param string $key The key of vara
      * @param null|array $options Options to set (optional)
      * @return the requested instance of nakshatra class
@@ -73,15 +73,15 @@ class Vara
         $key = ucfirst(strtolower($key));
         self::checkVaraKey($key);
 
-        $varaClass = 'Jyotish\\Panchanga\\Vara\\Object\\' . $key;
+        $varaClass = 'Jyotish\\Panchanga\\Vara\\BaseObject\\' . $key;
         $varaObject = new $varaClass($options);
 
         return $varaObject;
     }
-    
+
     /**
      * Returns the list of varas.
-     * 
+     *
      * @param string $startDay
      * @return array
      */
@@ -90,19 +90,19 @@ class Vara
         $varas = self::$vara;
         $key = ucfirst(strtolower($startDay));
         self::checkVaraKey($key);
-        
+
         if ($key != Graha::KEY_SY) {
             $list = Math::shiftArray($varas, $key);
         } else {
             $list = $varas;
         }
-        
+
         return $list;
     }
-    
+
     /**
      * Check vara key.
-     * 
+     *
      * @param string $key
      * @throws \Jyotish\Panchanga\Exception\InvalidArgumentException
      */

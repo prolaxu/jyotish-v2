@@ -53,7 +53,7 @@ class Tithi
      * Auspicious to complete all jobs
      */
     const TYPE_PURNA = 'purna';
-    
+
     /**
      * Waxing moon
      */
@@ -62,7 +62,7 @@ class Tithi
      * Waning moon
      */
     const PAKSHA_KRISHNA = 'krishna';
-    
+
     /**
      * List of tithis in panchanga
      */
@@ -74,7 +74,7 @@ class Tithi
 
     /**
      * List of tithis.
-     * 
+     *
      * @var array
      */
     public static $tithi = [
@@ -109,10 +109,10 @@ class Tithi
         29 => self::NAME_CHATURDASHI,
         30 => self::NAME_AMAVASYA,
     ];
-    
+
     /**
      * Devas of tithi.
-     * 
+     *
      * @var array
      * @see Varahamihira. Brihat Samhita. Chapter 99, Verse 1.
      * @see Bhavishya Purana. Brahma parva, Chapter 102.
@@ -158,7 +158,7 @@ class Tithi
 
     /**
      * Returns the requested instance of tithi class.
-     * 
+     *
      * @param int $key The key of tithi
      * @param null|array $options Options to set (optional)
      * * - `tithiDeva`: tithi deva information
@@ -170,16 +170,16 @@ class Tithi
         if (!array_key_exists($key, self::$tithi)) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Tithi with the key '$key' does not exist.");
         }
-        
-        $tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $key;
+
+        $tithiClass = 'Jyotish\\Panchanga\\Tithi\\BaseObject\\T' . $key;
         $tithiObject = new $tithiClass($options);
 
         return $tithiObject;
     }
-    
+
     /**
      * Returns the list of tithis.
-     * 
+     *
      * @param string $listType
      * @return array
      */
