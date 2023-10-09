@@ -74,7 +74,7 @@ class Dasha
             throw new Exception\InvalidArgumentException("Dasha '$typeLower' does not exist.");
         }
 
-        $dashaClass = 'Jyotish\Dasha\Object\\' . ucfirst($typeLower);
+        $dashaClass = 'Jyotish\Dasha\BaseObject\\' . ucfirst($typeLower);
         $dashaObject = new $dashaClass($options);
 
         return $dashaObject;
